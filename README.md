@@ -5,6 +5,10 @@
 
 A simple point of sale system made to be used by [The Central Washington University Wildcat Shop](https://wildcatshop.net/) in place of the traditional POS in the event of an outage during offsite events.
 
+I hope to expand on this and eventually create a user interface.
+
+This project is written in C++ in an effort to keep the program portable, meaning nothing needs to be installed for this program to be run(hopefully) although it is important that it is compiled for you operating system(likely windows).
+
 # Point of Sale Menu
 
 
@@ -25,7 +29,7 @@ Here is an example of what happens upon scanning an unknown  SKU:
 
 ![alt_text](https://github.com/cushonz/Wildcat-POS/blob/main/pics/cashier-view.png)
 	
-Notice after dding the SKU to the database the customer still had to be rung up for the SKU.
+Notice after adding the SKU to the database the customer still had to be rung up for the SKU.
 
 	
 
