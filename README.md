@@ -23,7 +23,7 @@ In the event of a missing SKU the cashier will be given the opportunity to add t
 
 Here is an example of what happens upon scanning an unknown  SKU:
 
-	![alt_text](https://github.com/cushonz/Wildcat-POS/blob/main/pics/cashier-view.png)
+![alt_text](https://github.com/cushonz/Wildcat-POS/blob/main/pics/cashier-view.png)
 	
 Notice after dding the SKU to the database the customer still had to be rung up for the SKU.
 
