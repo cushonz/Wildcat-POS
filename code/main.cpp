@@ -5,7 +5,7 @@ using namespace std;
 
 double priceLookup(string SKU)
 {
-	ifstream file("inventory.txt");
+	ifstream file("data/inventory.txt");
 	string line;
 	while (!file.eof())
 	{
