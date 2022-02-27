@@ -44,7 +44,7 @@ double Transaction :: priceAdj(double value,string SKU)
 void Transaction :: filePush(double money)
 {
 	ofstream sales("sales.txt",ios_base::app);
-	sales << "Total Sales: $" << money <<endl;
+	sales << "END OF DAY - Total Sales: $" << money <<endl;
 }
 
 void Transaction :: removeLast()
@@ -81,7 +81,7 @@ void Transaction :: addToPrice(double price)
 	prices.push_back(price);	// Directly access price vector
 }
 
-void Transaction :: termTrans(int size,int transID)
+double Transaction :: termTrans(int size,int transID)
 {
 	cout << "Transaction #" << transID <<endl;
 	ofstream skus("sales.txt",ios_base::app);
@@ -93,7 +93,8 @@ void Transaction :: termTrans(int size,int transID)
 		subt *= tax;							// write total prior to tax calculation
 		skus <<"$"<< setprecision(3) <<subt << endl;
 		skus << "Transaction ID: "<< transID<<endl;			// write newly updated total after subtotal
-		cout <<"Total:"<< "$" << setprecision(3) <<subt<<endl;
+		skus <<"Total:"<< "$" << setprecision(3) <<subt<<endl;
+		return subt;
 }
 
 double Transaction :: totalOrder()

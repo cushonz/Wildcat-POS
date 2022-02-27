@@ -5,7 +5,7 @@ using namespace std;
 
 double priceLookup(string SKU)
 {
-	ifstream file("data/inventory.txt");
+	ifstream file("./data/inventory.txt");
 	string line;
 	while (!file.eof())
 	{
@@ -42,7 +42,7 @@ int main()
 			cin >> SKU;
 			if (SKU.compare("q") == 0 || SKU.compare("Q") == 0) // "Is that everything"
 			{
-				trans.termTrans(items,transID);
+				totalSum = totalSum + trans.termTrans(items,transID);
 				break;
 			}
 			else if (SKU.compare("u") == 0 || SKU.compare("U") == 0) // "Can you take that last one off?"
@@ -53,10 +53,9 @@ int main()
 			}
 			else if (SKU.compare("e") == 0 || SKU.compare("E") == 0) // "End of day?"
 			{
+				ofstream skus("sales.txt",ios_base::app);
 				cout << endl << "Running end of day..." << endl;
-				for (int i : total)
-				totalSum = totalSum + total[i];
-				trans.filePush(totalSum);
+				skus<<"End of day: $" << setprecision(3) <<totalSum;
 			}
 			else
 			{
@@ -83,7 +82,7 @@ int main()
 						cin >> price;
 						ofstream inventory("inventory.txt",ios_base::app);
 						inventory << SKU << endl;
-						inventory << price<< endl;
+						inventory << price << endl;
 
 					}
 				}
