@@ -43,6 +43,8 @@ int main()
 			if (SKU.compare("q") == 0 || SKU.compare("Q") == 0) // "Is that everything"
 			{
 				totalSum = totalSum + trans.termTrans(items,transID);
+				cout<<"--------------------------"<<endl;
+				cout<<endl;
 				break;
 			}
 			else if (SKU.compare("u") == 0 || SKU.compare("U") == 0) // "Can you take that last one off?"
@@ -80,7 +82,7 @@ int main()
 					{
 						cout << "item price: ";
 						cin >> price;
-						ofstream inventory("inventory.txt",ios_base::app);
+						ofstream inventory("./data/inventory.txt",ios_base::app);
 						inventory << SKU << endl;
 						inventory << price << endl;
 
