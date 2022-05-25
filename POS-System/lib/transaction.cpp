@@ -7,15 +7,13 @@
 using namespace std;
 
 // Constructor
-Transaction :: Transaction(int TID)
-{
+Transaction :: Transaction(int TID){
 	id = TID;
 	subtotal = 0;
 }
 
 
-void Transaction :: addToSKU(string SKU)
-{
+void Transaction :: addToSKU(string SKU){
 	items.push_back(SKU); // Directly access items vector
 }
 
@@ -24,8 +22,7 @@ void Transaction :: addToSKU(string SKU)
 	in the event the customer has a coupon
  */
 
-double Transaction :: priceAdj(double value,string SKU)
-{
+double Transaction :: priceAdj(double value,string SKU){
 		ifstream dict("dictionary.txt"); 
 		string price;
 		double numb;
@@ -33,9 +30,7 @@ double Transaction :: priceAdj(double value,string SKU)
 		for (string line; getline(dict,line);)
 			if (line.compare(SKU) == 0)
 				getline(dict,price);
-				
-		if (value < 1)
-		{
+		if (value < 1){
 			numb = stod(price);
 			numb = numb - (numb*value);
 			return (numb);
@@ -49,21 +44,18 @@ double Transaction :: priceAdj(double value,string SKU)
 }
 
 // This will append the end of day report to the end of the sales history
-void Transaction :: filePush(double money)
-{
+void Transaction :: filePush(double money){
 	ofstream sales("./data/sales.txt",ios_base::app);
 	sales << "END OF DAY - Total Sales: $" << money <<endl;
 }
 
 // For indecisive customers
-void Transaction :: removeLast()
-{
+void Transaction :: removeLast(){
 	items.pop_back();
 }
 
 // Provides the last item
-string Transaction :: last()
-{
+string Transaction :: last(){
 	return items.back();
 }
 
@@ -75,8 +67,7 @@ double Transaction :: priceLookUp(string SKU) // Might be useful to cast to doub
 			return prices[i];
 		
 	ifstream dict("dictionary.txt");
-	for (string line; getline(dict,line); )
-	{
+	for (string line; getline(dict,line); ){
 		if (line.compare(SKU) == 0)
 			getline(dict,line);
 			getline(dict,line);
@@ -87,14 +78,12 @@ double Transaction :: priceLookUp(string SKU) // Might be useful to cast to doub
 }
 
 // Add to running total
-void Transaction :: addToPrice(double price)
-{
+void Transaction :: addToPrice(double price){
 	prices.push_back(price);	// Directly access price vector
 }
 
 // Total out transaction and save important data to file
-double Transaction :: termTrans(int size,int transID)
-{
+double Transaction :: termTrans(int size,int transID){
 	cout << "Transaction #" << transID <<endl;
 	ofstream skus("./data/sales.txt",ios_base::app);
 	double subt = totalOrder();
@@ -110,8 +99,7 @@ double Transaction :: termTrans(int size,int transID)
 }
 
 // Total up price vector
-double Transaction :: totalOrder()
-{
+double Transaction :: totalOrder(){
 	for (int i = 0; i < prices.size(); i++)
 		subtotal+= prices[i];
 	return subtotal;

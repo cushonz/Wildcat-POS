@@ -15,8 +15,7 @@ using namespace std;
 
 // Add price to price vector to be unload later
 
-void pushPrice(vector<double>& price)
-{
+void pushPrice(vector<double>& price){
 	double dollars;
 	cout << "Price:";
 	cin >> dollars;			// Push prices into vector
@@ -25,8 +24,7 @@ void pushPrice(vector<double>& price)
 
 // Add SKU to vector to be unloaded later
 
-bool pushSKU(vector <string>& SKU)
-{
+bool pushSKU(vector <string>& SKU){
 	string SKUL;
 	cout << "SKU:";
 	cin >> SKUL;			// Push prices into vector
@@ -39,8 +37,7 @@ bool pushSKU(vector <string>& SKU)
 
  // Populate the file with SKUs followed by their prices
 
-void filePop(vector <double> prices, vector<string>& SKUs, string filename, int numb)
-{
+void filePop(vector <double> prices, vector<string>& SKUs, string filename, int numb){
 	ofstream file(filename);
 	if (numb > -1)
 	{
@@ -58,8 +55,7 @@ int main()
 	vector<string> SKU;
 
 	int totalItems = -1;
-	while (pushSKU(SKU)) // Loop until user inputs escape char, in this case 'Q'
-	{
+	while (pushSKU(SKU)) {// Loop until user inputs escape char, in this case 'Q'
 		pushPrice(price);
 		totalItems++;
 	}
@@ -67,8 +63,7 @@ int main()
 	ofstream file("inventory.txt",ios_base::app); // Create output file
 	
 	// Loop through the price array and unload both price and SKU since they
-	for ( int i = 0; i < price.size(); i++)
-	{
+	for ( int i = 0; i < price.size(); i++){
 		file << SKU[i]<<endl;
 		file << price[i]<<endl;
 	}
