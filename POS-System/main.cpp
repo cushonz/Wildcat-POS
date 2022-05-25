@@ -3,6 +3,12 @@
 #include <vector>
 using namespace std;
 
+
+/* A method responsible for retriving the price of a given SKU 
+  perfect for customers who would like to know the price of an item
+
+	'Price Inquiry'
+*/
 double priceLookup(string SKU)
 {
 	ifstream file("./data/inventory.txt");
@@ -24,6 +30,8 @@ double priceLookup(string SKU)
 
 int main()
 {
+	// Assign each customer a transaction ID
+	// to be used when the EOD report is generated
 	int transID = 0;
 	double totalSum = 0;
 	int items;
@@ -32,7 +40,9 @@ int main()
 	
 	while (true) 
 	{
+		// Create a transaction object
 		Transaction trans(transID);
+		// Running total for transaction
 		vector<double> total;
 		
 		items = 0;
@@ -40,20 +50,20 @@ int main()
 		{
 			cout << "SKU:";
 			cin >> SKU;
-			if (SKU.compare("q") == 0 || SKU.compare("Q") == 0) // "Is that everything"
+			if (SKU.compare("q") == 0 || SKU.compare("Q") == 0) // Escape character
 			{
 				totalSum = totalSum + trans.termTrans(items,transID);
 				cout<<"--------------------------"<<endl;
 				cout<<endl;
 				break;
 			}
-			else if (SKU.compare("u") == 0 || SKU.compare("U") == 0) // "Can you take that last one off?"
+			else if (SKU.compare("u") == 0 || SKU.compare("U") == 0) // Remove the previous item
 			{
 				cout << "removing SKU: " << trans.last()<<endl;
 				trans.removeLast();
 				items-=1;
 			}
-			else if (SKU.compare("e") == 0 || SKU.compare("E") == 0) // "End of day?"
+			else if (SKU.compare("e") == 0 || SKU.compare("E") == 0) // Run end of day
 			{
 				ofstream skus("./data/sales.txt",ios_base::app);
 				cout << endl << "Running end of day..." << endl;
@@ -64,7 +74,7 @@ int main()
 				
 				
 				price = priceLookup(SKU);
-				if (price > 0)		//if SKU is not in system, you arent stuck.
+				if (price > 0)		//if SKU is not in system, you arent stuck AND nothing goes out free
 				{
 					cout << "$"<<price<<endl;
 					trans.addToSKU(SKU);
@@ -76,7 +86,7 @@ int main()
 				else
 				{
 					string dec;
-					cout << "SKU not found. would you like to add it?(Y/N)"<<endl;  //managers only?
+					cout << "SKU not found. would you like to add it?(Y/N)"<<endl;  // Considering restricting with pin
 					cin >> dec;
 					if (dec.compare("y") == 0 || dec.compare("Y") == 0)
 					{

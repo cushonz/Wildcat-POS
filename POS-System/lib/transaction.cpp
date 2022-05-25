@@ -6,16 +6,23 @@
 #include <iomanip>
 using namespace std;
 
+// Constructor
 Transaction :: Transaction(int TID)
 {
 	id = TID;
 	subtotal = 0;
 }
 
+
 void Transaction :: addToSKU(string SKU)
 {
 	items.push_back(SKU); // Directly access items vector
 }
+
+
+/* This method is responsible for items that may be on sale or 
+	in the event the customer has a coupon
+ */
 
 double Transaction :: priceAdj(double value,string SKU)
 {
@@ -41,22 +48,26 @@ double Transaction :: priceAdj(double value,string SKU)
 		return numb;
 }
 
+// This will append the end of day report to the end of the sales history
 void Transaction :: filePush(double money)
 {
 	ofstream sales("./data/sales.txt",ios_base::app);
 	sales << "END OF DAY - Total Sales: $" << money <<endl;
 }
 
+// For indecisive customers
 void Transaction :: removeLast()
 {
 	items.pop_back();
 }
 
+// Provides the last item
 string Transaction :: last()
 {
 	return items.back();
 }
 
+// Retrive the price of an item by SKU # for price Inquiry
 double Transaction :: priceLookUp(string SKU) // Might be useful to cast to double
 {
 	for (int i = 0; i < items.size(); i++)
@@ -75,12 +86,13 @@ double Transaction :: priceLookUp(string SKU) // Might be useful to cast to doub
 	
 }
 
-
+// Add to running total
 void Transaction :: addToPrice(double price)
 {
 	prices.push_back(price);	// Directly access price vector
 }
 
+// Total out transaction and save important data to file
 double Transaction :: termTrans(int size,int transID)
 {
 	cout << "Transaction #" << transID <<endl;
@@ -97,6 +109,7 @@ double Transaction :: termTrans(int size,int transID)
 		return subt;
 }
 
+// Total up price vector
 double Transaction :: totalOrder()
 {
 	for (int i = 0; i < prices.size(); i++)
