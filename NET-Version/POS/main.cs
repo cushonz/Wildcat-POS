@@ -59,6 +59,7 @@ namespace wildcatPOS
                         case "Q":
                             totalSum = totalSum + trans.TermTrans(items, transID);
                             Console.WriteLine("------------------------------");
+                            transID++;
                             break;
                         case "U":
                             Console.WriteLine("removing SKU: " + trans.Last());
@@ -71,6 +72,8 @@ namespace wildcatPOS
                                 // Write to the file here
                                 skus.WriteLine("End of day: $" + totalSum);
                             }
+                            Console.WriteLine("Exiting..");
+                            Environment.Exit(0);
                             break;
 
                         default:

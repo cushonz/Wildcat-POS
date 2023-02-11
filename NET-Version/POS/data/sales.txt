@@ -1,13 +1,13 @@
-$0.00 x 1.083
-$0.00
+123      $12.34
+$12.34 x 1.083
+$13.36
 Transaction ID: 0
-Total: $0.00
-1      $10.00
+Total: $13.36
+123      $12.34
 thisis12      $12.00
-$22.00 x 1.083
-$23.83
-Transaction ID: 0
-Total: $23.83
-End of day: $23.826
-End of day: $23.826
-End of day: $0
+12      $123.00
+$147.34 x 1.083
+$159.57
+Transaction ID: 1
+Total: $159.57
+End of day: $172.93344
