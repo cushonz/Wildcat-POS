@@ -6,20 +6,14 @@ A simple point of sale system made to be used by [The Central Washington Univers
 
 I hope to expand on this and eventually create a user interface.
 
-This project is written in C++ in an effort to keep the program portable, meaning nothing needs to be installed for this program to be run(hopefully) although it is important that it is compiled for you operating system(likely windows).
+This project is written in C# using the .NET framework in an effort to keep the program portable, meaning nothing needs to be installed for this program to be run as long as the computer has .NET v2.0 or higher
 
-# Point of Sale Menu
+# New UI vs Old UI
 
-Current Controls Include:
+## Old
 
-    Q - End transaction/Total out
-    U - Undo last item(this can be used in succesion)
-    E - End of day (this will write the total sales including tax to the end of the sales file to allow for an easy summary of the sales for the day)
+![alt_text](https://github.com/cushonz/Wildcat-POS/blob/main/pics/cashier-view.png)
 
-In future versions a menu can be added although I felt this is simple enough at the moment.
-
-# New UI and backend framework
-
-I've refactored the project using .NET and C# to be more compatible with windows machines, I also implemented a UI!
+## New
 
 ![alt_text](https://github.com/cushonz/Wildcat-POS/blob/main/pics/NewUI.png)
